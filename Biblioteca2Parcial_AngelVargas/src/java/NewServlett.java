@@ -4,9 +4,9 @@
  */
 
 
-import Clases.Cliente;
-import Clases.ClienteController;
-import Clases.ConexionBaseDeDatos;
+import Clases.Libro;
+import Clases.LibroController;
+import Clases.ConexionBaseDeDatos1;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
@@ -19,11 +19,11 @@ import jakarta.servlet.http.HttpServletResponse;
  *
  * @author JP
  */
-@WebServlet(urlPatterns = {"/NewServlet"})
-public class NewServlet extends HttpServlet {
-    Cliente cliente;
-    ClienteController registroCliente;
-     Cliente[] clientesRegistrados;
+@WebServlet(urlPatterns = {"/NewServlett"})
+public class NewServlett extends HttpServlet {
+    Libro libro;
+    LibroController registroLibro;
+     Libro[] librosRegistrados;
      StringBuffer objetoRespuesta = new StringBuffer();
     
     /**
@@ -49,39 +49,39 @@ public class NewServlet extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         try ( PrintWriter respuesta = response.getWriter()) {            
            
-           registroCliente=new ClienteController();
+           registroLibro=new LibroController();
            String control = request.getParameter("control");
            
            if(control.toUpperCase().equals("GUARDAR")){
-               cliente=new Cliente(
+               libro=new Libro(
                 Integer.parseInt(request.getParameter("codigo")),
                 request.getParameter("nombre"),
-                request.getParameter("correo"),
-                request.getParameter("direccion"),
-                request.getParameter("telefono"),     
+                request.getParameter("Pasta"),
+                request.getParameter("editorial"),
+                request.getParameter("publicacion"),     
                 Integer.parseInt(request.getParameter("opcion")));                
-                registroCliente.guardarCliente2(cliente);//almacenarlo en BD                 
+                registroLibro.guardarCliente2(libro);//almacenarlo en BD                 
            }else if(control.toUpperCase().equals("ELIMINAR")){
                int codigoEliminar= Integer.parseInt(request.getParameter("codigo_cliente"));
-               registroCliente.eliminarCliente(codigoEliminar);
+               registroLibro.eliminarCliente(codigoEliminar);
            }
                         
             
-            //registroAlumno.guardarCliente(cliente);//almacenarlo en el array
-            //alumnosRegistrados= registroCliente.getClientes();// consultar alumnos en el array                       
+            //registroAlumno.guardarCliente(libro);//almacenarlo en el array
+            //alumnosRegistrados= registroLibro.getClientes();// consultar alumnos en el array                       
                     
-           registroCliente.getClientes2(objetoRespuesta);//consultar alumnos en la BD
+           registroLibro.getClientes2(objetoRespuesta);//consultar alumnos en la BD
            respuesta.write(objetoRespuesta.toString());             
             
            
-            /*for (int i = 0; i < clientesRegistrados.length; i++){
-                   //if(!clientesRegistrados[i].getCodigo().isEmpty()){
-                    if(clientesRegistrados[i].getCodigo()>0){
-                       respuesta.println("<tr><td>" + clientesRegistrados[i].getCodigo()+ "</td>");
-                       respuesta.println("<td>" + clientesRegistrados[i].getNombre() + "</td>");
-                       respuesta.println("<td>" + clientesRegistrados[i].getDireccion()+ "</td>");
-                       respuesta.println("<td>" + clientesRegistrados[i].getCorreo()+ "</td>");
-                       respuesta.println("<td>" + clientesRegistrados[i].getTipo()+ "</td>");
+            /*for (int i = 0; i < librosRegistrados.length; i++){
+                   //if(!librosRegistrados[i].getCodigo().isEmpty()){
+                    if(librosRegistrados[i].getCodigo()>0){
+                       respuesta.println("<tr><td>" + librosRegistrados[i].getCodigo()+ "</td>");
+                       respuesta.println("<td>" + librosRegistrados[i].getNombre() + "</td>");
+                       respuesta.println("<td>" + librosRegistrados[i].getDireccion()+ "</td>");
+                       respuesta.println("<td>" + librosRegistrados[i].getCorreo()+ "</td>");
+                       respuesta.println("<td>" + librosRegistrados[i].getTipo()+ "</td>");
                        respuesta.println("<td>"
                                + "<button type=\"button\" class=\"btn btn-warning\"></i>Editar</button> "
                                + "<button type=\"button\" class=\"btn btn-danger\">Eliminar</button>"

@@ -4,26 +4,26 @@
  */
 package Clases;
 
-public class Cliente {
+public class Libro {
     private int codigo;
     private String nombre;
-    private String correo;
-    private String direccion;
-    private String telefono;
+    private String pasta;
+    private String editorial;
+    private String publicacion;
     private int tipo;
 
     
-    public Cliente(int codigo, String nombre, String correo, String direccion, String telefono, int tipo){
+    public Libro(int codigo, String nombre, String pasta, String editorial, String publicacion, int tipo){
         this.codigo=codigo;
         this.nombre=nombre;
-        this.correo=correo;
-        this.direccion=direccion;  
-        this.telefono=telefono;
+        this.pasta=pasta;
+        this.editorial=this.editorial;  
+        this.publicacion=publicacion;
         this.tipo=tipo;   
     }
     
-    public Cliente(){
-        this.nombre="Cliente de ejemplo";
+    public Libro(){
+        this.nombre="Libro de ejemplo";
     }
 
     public int getCodigo() {
@@ -42,30 +42,30 @@ public class Cliente {
         this.nombre = nombre;
     }
 
-    public String getCorreo() {
-        return correo;
+    public String getPasta() {
+        return pasta;
     }
 
-    public void setCorreo(String correo) {
-        this.correo = correo;
+    public void setPasta(String pasta) {
+        this.pasta = pasta;
     }
 
-    public String getDireccion() {
-        return direccion;
+    public String getEditorial() {
+        return editorial;
     }
     
-     public String getTelefono() {
-        return telefono;
+     public String getPublicacion() {
+        return publicacion;
     }
 
-    public void setTelefono(String telefono) {
-        this.telefono = telefono;
+    public void setPublicacion(String publicacion) {
+        this.publicacion = publicacion;
         
         
     }
 
-    public void setDireccion(String direccion) {
-        this.direccion = direccion;
+    public void setEditorial(String editorial) {
+        this.editorial = editorial;
     }
         public int getTipo() {
         return tipo;
